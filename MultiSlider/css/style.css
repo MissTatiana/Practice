@@ -72,7 +72,7 @@
 
 .mi-slider ul li:hover {
 	opacity: 0.7;
-}
+} 
 
 .mi-slider nav {
 	position: relative;
@@ -104,7 +104,6 @@
 	color: #000;
 }
 
-/*TRIANGLE*/
 .mi-slider nav a.mi-selected:after,
 .mi-slider nav a.mi-selected:before {
 	content: '';
@@ -133,19 +132,21 @@
 	margin-left: -27px;
 }
 
-.mi-slider ul:first-child li, 
+/* Move classes and animations */
+
+.mi-slider ul:first-child li,
 .no-js .mi-slider ul li {
-	-webkit-animation: scaleUp 35-mx ease-in-out both;
+	-webkit-animation: scaleUp 350ms ease-in-out both;
 	animation: scaleUp 350ms ease-in-out both;
 }
 
 @-webkit-keyframes scaleUp {
-	0% { transform: translateX(0); }
-	100% { transform: translateX(0) scale(1); }
+	0% { -webkit-transform: translateX(0) scale(0); }
+	100% { -webkit-transform: translateX(0) scale(1); }
 }
 
 @keyframes scaleUp {
-	0% { transform: translateX(0); }
+	0% { transform: translateX(0) scale(0); }
 	100% { transform: translateX(0) scale(1); }
 }
 
@@ -154,7 +155,7 @@
 	animation-delay: 90ms;
 }
 
-.mi-slider ul:first-child:nth-child(2) {
+.mi-slider ul:first-child li:nth-child(2) {
 	-webkit-animation-delay: 180ms;
 	animation-delay: 180ms;
 }
@@ -169,32 +170,38 @@
 	animation-delay: 360ms;
 }
 
-/*move from right*/
+/* moveFromRight */
+
 .mi-slider ul.mi-moveFromRight li {
 	-webkit-animation: moveFromRight 350ms ease-in-out both;
-	animation: mi-moveFromRight 350ms ease-in-out both;
+	animation: moveFromRight 350ms ease-in-out both;
 }
 
-/*move from left*/
+/* moveFromLeft */
+
 .mi-slider ul.mi-moveFromLeft li {
 	-webkit-animation: moveFromLeft 350ms ease-in-out both;
 	animation: moveFromLeft 350ms ease-in-out both;
 }
 
-/*move to right*/
+/* moveToRight */
+
 .mi-slider ul.mi-moveToRight li {
 	-webkit-animation: moveToRight 350ms ease-in-out both;
 	animation: moveToRight 350ms ease-in-out both;
 }
 
-/*move to left*/
+/* moveToLeft */
+
 .mi-slider ul.mi-moveToLeft li {
 	-webkit-animation: moveToLeft 350ms ease-in-out both;
 	animation: moveToLeft 350ms ease-in-out both;
 }
 
+/* Animation Delays */
+
 .mi-slider ul.mi-moveToLeft li:first-child,
-.mi-slider ul.mi-moveFromRight li:first-child.
+.mi-slider ul.mi-moveFromRight li:first-child,
 .mi-slider ul.mi-moveToRight li:nth-child(4),
 .mi-slider ul.mi-moveFromLeft li:nth-child(4) {
 	-webkit-animation-delay: 0ms;
@@ -220,29 +227,31 @@
 .mi-slider ul.mi-moveToLeft li:nth-child(4),
 .mi-slider ul.mi-moveFromRight li:nth-child(4),
 .mi-slider ul.mi-moveToRight li:first-child,
-.mi-slider ul.mi-moveFromLeft li:first-child {
+.mi-slider ul.mi-moveFromLeft li:first-child  {
 	-webkit-animation-delay: 270ms;
 	animation-delay: 270ms;
 }
 
+/* Animations */
+
 @-webkit-keyframes moveFromRight {
-	0% { transform: translateX(600%); }
-	100% { transform: translateX(0); }
+	0% { -webkit-transform: translateX(600%); }
+	100% { -webkit-transform: translateX(0%); }
 }
 
 @-webkit-keyframes moveFromLeft {
-	0% { transform: translateX(-600%); }
-	100% { transform: translateX(0); }	
+	0% { -webkit-transform: translateX(-600%); }
+	100% { -webkit-transform: translateX(0%); }
 }
 
 @-webkit-keyframes moveToRight {
-	0% { transform: translateX(0%); }
-	100% { transform: translateX(600%); }
+	0% { -webkit-transform: translateX(0%); }
+	100% { -webkit-transform: translateX(600%); }
 }
 
 @-webkit-keyframes moveToLeft {
-	0% { transform: translateX(0%); }
-	100% { transform: translateX(-600%); }
+	0% { -webkit-transform: translateX(0%); }
+	100% { -webkit-transform: translateX(-600%); }
 }
 
 @keyframes moveFromRight {
@@ -252,7 +261,7 @@
 
 @keyframes moveFromLeft {
 	0% { transform: translateX(-600%); }
-	100% { transform: translateX(0); }	
+	100% { transform: translateX(0); }
 }
 
 @keyframes moveToRight {
@@ -265,32 +274,36 @@
 	100% { transform: translateX(-600%); }
 }
 
+.mi-slider {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 
-
-@media screen and (max-width: 910px) {
-
+/* Media Queries */
+@media screen and (max-width: 910px){
 	.mi-slider nav {
-		max-width: 90%
+		max-width: 90%;
 	}
-
 	.mi-slider nav a {
 		font-size: 12px;
 		padding: 40px 10px 30px 14px;
 	}
-
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 740px){
 	.mi-slider {
 		height: 300px;
 	}
-
 	.mi-slider nav {
 		top: 220px;
 	}
 }
 
-@media screen and (max-width: 490px) {
+@media screen and (max-width: 490px){ 
 	.mi-slider {
 		text-align: center;
 		height: auto;
@@ -316,10 +329,4 @@
 		display: none;
 	}
 }
-
-
-
-
-
-
 
