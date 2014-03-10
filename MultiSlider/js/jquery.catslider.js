@@ -1,9 +1,9 @@
-function( $, window, undefined) {
+;( function( $, window, undefined ) {
 
 'use strict';
 
-$.CatSlider = function( options, element) {
-	this.#el = $( element );
+$.CatSlider = function( options, element ) {
+	this.$el = $( element );
 	this._init( options );
 };//CatSlider
 
@@ -17,7 +17,7 @@ $.CatSlider.prototype = {
 		var animEndEventNames = {
 			'WebkitAnimation' : 'WebkitAnimationEnd',
 			'OAnimation' : 'OAnimationEnd',
-			'msAnimation' : 'msAnimationEnd',
+			'msAnimation' : 'MSAnimationEnd',
 			'animation' : 'animationend'
 		};
 
@@ -37,12 +37,11 @@ $.CatSlider.prototype = {
 		else {
 			$currcat.addClass( 'mi-current' );
 		}
-
 		//current nav category
 		this.$navcategories.eq( 0 ).addClass( 'mi-selected' );
 		//initialized the events
 		this._initEvents();
-	};//_init
+	},//_init
 
 	_initEvents: function() {
 
@@ -59,7 +58,7 @@ $.CatSlider.prototype = {
 			self.current = 0;
 		});
 
-	};//_initEvents
+	},//_initEvents
 
 	showCategory: function( catidx ) {
 
@@ -90,6 +89,7 @@ $.CatSlider.prototype = {
 
 				$newcat.removeClass().addClass( fromClass );
 				$newcatchild.eq( lastEnter ).on( self.animEndEventName, function() {
+					
 					$( this ).off( self.animEndEventName );
 					$newcat.addClass( 'mi-current' );
 					self.current = catidx;
@@ -97,6 +97,7 @@ $.CatSlider.prototype = {
 					//solve chrome bug
 					self.forceRedraw( $this.get( ) );
 					self.isAnimating = false;
+				
 				});
 
 			}, #newcatchild.lenght * 90);
@@ -109,8 +110,36 @@ $.CatSlider.prototype = {
 			this.isAnimating = false;
 		}
 
-	};//showCategory
+	},//showCategory
+
+	forceRedraw: function( element ) {
+		if( !element ) { return; }
+		var n = document.createTextNode(' '),
+			position = element.style.position;
+		element.appendChild(n);
+		elemnet.style.postion = 'relative';
+		setTimeout(function() {
+			element.style.position = position;
+			n.parentNode.removeChild(n);
+		}, 25);
+	}
 
 };//prototype
 
-}
+$.fn.catslider = function( options ) {
+	var instance = $.data( this, 'catslider' );
+	if ( typeof options === 'string' ) {
+		var args = Array.prototype.slice.call( arguments, 1 );
+		this.each(function() {
+			instance[ options ].apply( instance, args );
+		});
+	}
+	else {
+		this.each(function() {
+			instance ? instance._init() : instance = $.data( this, 'catslider', new $.CatSlider( options, this ));
+		})
+	}
+	return instance;
+};
+
+} )( jQuery, window );

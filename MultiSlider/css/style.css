@@ -1,3 +1,5 @@
+@import url('demo.css');
+
 .mi-slider {
 	position: relative;
 	margin-top: 30px;
@@ -15,10 +17,6 @@
 	pointer-events: none;
 }
 
-.mi-slider ul.mi-current {
-	pointer-events: auto;
-}
-
 .no-js .mi-slider ul {
 	position: relative;
 	left: auto;
@@ -27,16 +25,23 @@
 	overflow: visible;
 }
 
+.mi-slider ul.mi-current {
+	pointer-events: auto;
+}
+
 .mi-slider ul li {
-	display: block;
+	display: inline-block;
 	padding: 20px;
 	width: 20%;
 	max-width: 300px;
+	-webkit-transform: translateX(600%);
 	transform: translateX(600%);
+	-webkit-transition: opacity 0.2s linear;
 	transition: opacity 0.2s linear;
 }
 
 .no-js .mi-slider ul li {
+	-webkit-transform: translateX(0);
 	transform: translateX(0);
 }
 
@@ -90,6 +95,7 @@
 	position: relative;
 	color: #888;
 	outline: none;
+	-webkit-transition: color 0.2s linear;
 	transition: color 0.2s linear;
 }
 
@@ -129,7 +135,13 @@
 
 .mi-slider ul:first-child li, 
 .no-js .mi-slider ul li {
+	-webkit-animation: scaleUp 35-mx ease-in-out both;
 	animation: scaleUp 350ms ease-in-out both;
+}
+
+@-webkit-keyframes scaleUp {
+	0% { transform: translateX(0); }
+	100% { transform: translateX(0) scale(1); }
 }
 
 @keyframes scaleUp {
@@ -138,38 +150,46 @@
 }
 
 .mi-slider ul:first-child li:first-child {
+	-webkit-animation-delay: 90ms;
 	animation-delay: 90ms;
 }
 
 .mi-slider ul:first-child:nth-child(2) {
+	-webkit-animation-delay: 180ms;
 	animation-delay: 180ms;
 }
 
 .mi-slider ul:first-child li:nth-child(3) {
+	-webkit-animation-delay: 270ms;
 	animation-delay: 270ms;
 }
 
 .mi-slider ul:first-child li:nth-child(4) {
+	-webkit-animation-delay: 360ms;
 	animation-delay: 360ms;
 }
 
 /*move from right*/
 .mi-slider ul.mi-moveFromRight li {
+	-webkit-animation: moveFromRight 350ms ease-in-out both;
 	animation: mi-moveFromRight 350ms ease-in-out both;
 }
 
 /*move from left*/
 .mi-slider ul.mi-moveFromLeft li {
+	-webkit-animation: moveFromLeft 350ms ease-in-out both;
 	animation: moveFromLeft 350ms ease-in-out both;
 }
 
 /*move to right*/
 .mi-slider ul.mi-moveToRight li {
+	-webkit-animation: moveToRight 350ms ease-in-out both;
 	animation: moveToRight 350ms ease-in-out both;
 }
 
 /*move to left*/
 .mi-slider ul.mi-moveToLeft li {
+	-webkit-animation: moveToLeft 350ms ease-in-out both;
 	animation: moveToLeft 350ms ease-in-out both;
 }
 
@@ -177,6 +197,7 @@
 .mi-slider ul.mi-moveFromRight li:first-child.
 .mi-slider ul.mi-moveToRight li:nth-child(4),
 .mi-slider ul.mi-moveFromLeft li:nth-child(4) {
+	-webkit-animation-delay: 0ms;
 	animation-delay: 0ms;
 }
 
@@ -202,6 +223,26 @@
 .mi-slider ul.mi-moveFromLeft li:first-child {
 	-webkit-animation-delay: 270ms;
 	animation-delay: 270ms;
+}
+
+@-webkit-keyframes moveFromRight {
+	0% { transform: translateX(600%); }
+	100% { transform: translateX(0); }
+}
+
+@-webkit-keyframes moveFromLeft {
+	0% { transform: translateX(-600%); }
+	100% { transform: translateX(0); }	
+}
+
+@-webkit-keyframes moveToRight {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(600%); }
+}
+
+@-webkit-keyframes moveToLeft {
+	0% { transform: translateX(0%); }
+	100% { transform: translateX(-600%); }
 }
 
 @keyframes moveFromRight {
@@ -263,7 +304,9 @@
 	}
 
 	.mi-slider ul li {
+		-webkit-animation: none !important;
 		animation: none !important;
+		-webkit-transform: translateX(0) !important;
 		transform: translateX(0) !important;
 		padding: 10px 3px;
 		min-width: 140px;
